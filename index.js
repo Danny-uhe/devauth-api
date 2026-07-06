@@ -1,5 +1,13 @@
 require('dotenv').config();
 
+// Guard: fail fast if critical env vars are missing
+const REQUIRED_ENV_VARS = ['MONGO_URL', 'TOKEN_SECRET', 'HMAC_VERIFICATION_CODE_SECRET'];
+const missingVars = REQUIRED_ENV_VARS.filter((key) => !process.env[key]);
+if (missingVars.length > 0) {
+  console.error(`❌ Missing required environment variables: ${missingVars.join(', ')}`);
+  console.error('   Make sure your .env file exists and contains all required variables.');
+  process.exit(1);
+}
 
 const express = require("express");
 const { default: helmet } = require("helmet");
