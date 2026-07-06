@@ -6,7 +6,7 @@ const {
   acceptFPCodeSchema,
   changePasswordSchema,
 } = require('../middleware/validator');
-const UserModel = require('../models/UserModel');
+const UserModel = require('../models/userModel');
 const { doHash, doHashValidation, hmacProcess } = require('../utills/hashing');
 const transporter = require('../middleware/sendMail');
 exports.signup = async (req, res) => {
